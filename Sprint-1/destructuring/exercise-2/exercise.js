@@ -80,4 +80,15 @@ function getGryffindorMembers(arr) {
     }
   }
 }
-getGryffindorMembers(hogwarts);
+
+//getGryffindorMembers(hogwarts);
+function getTeachersWithPets(arr) {
+  let teachersWithPets = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].occupation === "Teacher" && arr[i].pet !== null) {
+      const { firstName, lastName } = arr[i];
+      console.log(`${firstName} ${lastName}`);
+    }
+  }
+}
+getTeachersWithPets(hogwarts);
