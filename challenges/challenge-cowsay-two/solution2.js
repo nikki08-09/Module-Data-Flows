@@ -23,6 +23,16 @@ const cow = (saying) => {
   console.log(cow);
   // how did you make the cow before?
 };
-cow("Hello");
+const readline = require("readline").createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+const askQuestion = () => {
+  readline.question("What do you want the cow to say? ", (answer) => {
+    cow(answer);
+    readline.close();
+  });
+};
 // 4. Use readline to get a string from the terminal
 // (with a prompt so it's clearer what we want)
+askQuestion();
