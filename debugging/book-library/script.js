@@ -40,8 +40,19 @@ function submit() {
     return false;
   } else {
     let book = new Book(title.value, author.value, pages.value, check.checked);
-    myLibrary.push(book);
-    render();
+    if (
+      myLibrary.some(
+        (b) =>
+          b.title === book.title &&
+          b.author === book.author &&
+          b.pages === book.pages
+      )
+    ) {
+      alert("Book already exists!");
+    } else {
+      myLibrary.push(book);
+      render();
+    }
   }
 }
 
