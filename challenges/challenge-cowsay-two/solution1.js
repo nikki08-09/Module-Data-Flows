@@ -30,7 +30,7 @@ function cowsay(saying) {
 
   // how will you account for the parameter being empty?
 }
-cowsay("hhbhbjh");
+cowsay("Hello Nikita!"); // test your function with a string
 
 //4. Pipe argument into cowsay function and return a cow
 
