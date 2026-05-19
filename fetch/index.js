@@ -5,5 +5,9 @@ async function xkcd() {
   }
   let jsonData = await data.json();
   console.log(jsonData);
+  const generateButton = document.createElement("button");
+  generateButton.id = "generate";
+  generateButton.innerText = "Generate XKCD";
+  document.body.appendChild(generateButton);
 }
 xkcd();
