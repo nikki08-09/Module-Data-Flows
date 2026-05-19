@@ -36,6 +36,8 @@ async function randomFox() {
   imageDiv.style.height = "400px";
   generateButton.addEventListener("click", () => {
     const img = document.createElement("img");
+    img.style.maxHeight = "100%";
+    imageDiv.style.maxWidth = jsonData.image.length + "px";
     img.src = jsonData.image;
     img.alt = "Random Fox";
     imageDiv.appendChild(img);
