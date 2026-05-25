@@ -16,3 +16,6 @@ test("Throw an error for all the invalid inputs", () => {
     calculator("a,b,c");
   }).toThrow("Invalid input");
 });
+test("Ignore big numbers", () => {
+  expect(calculator("2,4,1,2,4,5,6,1001")).toEqual(24);
+});
