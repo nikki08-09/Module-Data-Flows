@@ -16,3 +16,9 @@ async function getWeather() {
       throw new Error("Error");
     });
 }
+let imageArray = [];
+
+let links = images.results;
+for (let i = 0; i < links.length; i++) {
+  imageArray.push(links[i].urls.full);
+}
