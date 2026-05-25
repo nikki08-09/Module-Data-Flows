@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,6 +48,32 @@
       </div>
     </main>
 
-    <script src="index.js"></script>
+    <script>
+      async function getWeather() {
+        let city = "london";
+        let info = await fetch(
+          `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=944c7d6eb18c20b5227a1d6028578e05`
+        )
+          .then((response) => response.json())
+          .catch((error) => {
+            throw new Error("Error");
+          });
+        let query = info.weather[0].description;
+        let images = await fetch(
+          `https://api.unsplash.com/search/photos?query=${query}&client_id=rFjekzFfQzet2DcZuW1kKXe8n9DHZHkp4zy2xGSbV3o`
+        )
+          .then((response) => response.json())
+          .catch((error) => {
+            throw new Error("Error");
+          });
+        let imageArray = [];
+
+        let links = images.results;
+        for (let i = 0; i < links.length; i++) {
+          imageArray.push(links[i].urls.full);
+        }
+      }
+      getWeather();
+    </script>
   </body>
 </html>
