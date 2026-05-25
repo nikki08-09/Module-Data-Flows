@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest /home/hyf/HYF/Week-10-film/Module-Data-Flows/challenges/unit-testing/writing-tests/largest-number"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
