@@ -11,3 +11,8 @@ test("Returns sum of two numbers", () => {
 test("Returns sum of many numbers", () => {
   expect(calculator("3,6,1,4,4,5,5,6,5,4,4,6,7")).toEqual(60);
 });
+test("Throw an error for all the invalid inputs", () => {
+  expect(() => {
+    calculator("a,b,c");
+  }).toThrow("Invalid input");
+});

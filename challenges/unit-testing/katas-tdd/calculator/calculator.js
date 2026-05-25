@@ -14,6 +14,8 @@ function calculator(numbers) {
       total += number;
     }
     return total;
+  } else {
+    throw new Error("Invalid input");
   }
 }
 module.exports = calculator;
