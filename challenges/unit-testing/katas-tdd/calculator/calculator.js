@@ -1,11 +1,19 @@
 function calculator(numbers) {
   if (numbers === "") return 0;
+  else if (isNegative(numbers))
+    throw new Error(
+      "negatives not allowed: " +
+        numbers
+          .split(",")
+          .filter((x) => Number(x) < 0)
+          .join(",")
+    );
   else if (numbers.length === 1 && isNumber(numbers)) return Number(numbers);
   else if (numbers.split(",").length === 2 && isNumber(numbers)) {
     let number = numbers.split(",")[0];
     let secondNumber = numbers.split(",")[1];
     return Number(number) + Number(secondNumber);
-  } else if (numbers.split(",").length >= 3 && numbersYes(numbers)) {
+  } else if (numbers.split(",").length >= 3 && isNumber(numbers)) {
     let arr = numbers.split(",");
     let total = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -29,5 +37,11 @@ function isNumber(numbers) {
 
     if (Number.isNaN(arr[i])) yes = false;
   }
+  return yes;
+}
+function isNegative(numbers) {
+  let yes = false;
+  let arr = numbers.split(",");
+  for (let x of arr) if (Number(x) < 0) yes = true;
   return yes;
 }
