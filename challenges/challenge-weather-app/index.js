@@ -15,10 +15,27 @@ async function getWeather() {
     .catch((error) => {
       throw new Error("Error");
     });
-}
-let imageArray = [];
 
-let links = images.results;
-for (let i = 0; i < links.length; i++) {
-  imageArray.push(links[i].urls.full);
+  let imageArray = [];
+
+  let links = images.results;
+  for (let i = 0; i < links.length; i++) {
+    imageArray.push(links[i].urls.full);
+  }
+  const figure = document.getElementById("photo");
+  const button = document.createElement("button");
+  document.querySelector(".info").append(button);
+  document.querySelector("#conditions").innerText =
+    info.weather[0].description + "\n" + city;
+  button.innerText = "Next";
+  button.style.position = "absolute";
+  button.style.left = "50%";
+  button.style.bottom = "40px";
+  button.style.borderRadius = "10px";
+  const imageFigure = document.createElement("img");
+  imageFigure.id = "imageFigure";
+  figure.append(imageFigure);
+  imageFigure.style.height = "100%";
+  imageFigure.style.width = "100%";
 }
+getWeather();
