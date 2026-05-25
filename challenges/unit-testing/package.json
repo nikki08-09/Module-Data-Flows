@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest /home/hyf/HYF/Week-10-film/Module-Data-Flows/challenges/unit-testing/katas-tdd/calculator"
+    "test": "jest /home/hyf/HYF/Week-10-film/Module-Data-Flows/challenges/unit-testing/katas-tdd/password-verifier/password-verifier.test.js"
   },
   "author": "",
   "license": "ISC",
