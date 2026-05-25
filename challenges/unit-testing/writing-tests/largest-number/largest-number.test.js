@@ -1,11 +1,11 @@
 let getLargestNumber = require("./largest-number");
 
 test("returns largest number in array", function () {
-  // Arrange
-  // Act
-  // Assert
-});
+  let input = [3, 21, 88, 4, 36];
+  let expected = 88;
 
+  expect(getLargestNumber(input)).toEqual(expected);
+});
 // example
 // input: [3, 21, 88, 4, 36];
 // expected: 88;
