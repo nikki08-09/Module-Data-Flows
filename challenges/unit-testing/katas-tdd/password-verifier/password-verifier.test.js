@@ -4,6 +4,6 @@ test("Password is not null/is null", () => {
   expect(passwordVerifier()).toEqual("Password rejected");
 });
 test("Password is 8 characters or more", () => {
-  expect(verifier("Mypassword1234")).toEqual("Password accepted");
-  expect(verifier("1234")).toEqual("Password rejected");
+  expect(passwordVerifier("Mypassword1234")).toEqual("Password accepted");
+  expect(passwordVerifier("1234")).toEqual("Password rejected");
 });
