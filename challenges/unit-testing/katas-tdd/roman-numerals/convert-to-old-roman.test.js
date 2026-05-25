@@ -28,3 +28,11 @@ test("returns D if passed 1 as an argument", function () {
 test("returns M if passed 1 as an argument", function () {
   expect(convertToOldRoman("1000")).toEqual("M");
 });
+test("Test for the rest", () => {
+  expect(convertToOldRoman("1")).toEqual("I");
+  expect(convertToOldRoman("3")).toEqual("III");
+  expect(convertToOldRoman("7")).toEqual("VII");
+  expect(convertToOldRoman("15")).toEqual("XV");
+  expect(convertToOldRoman("18")).toEqual("XVIII");
+  expect(convertToOldRoman("22")).toEqual("XXII");
+});
