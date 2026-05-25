@@ -37,5 +37,29 @@ async function getWeather() {
   figure.append(imageFigure);
   imageFigure.style.height = "100%";
   imageFigure.style.width = "100%";
+
+  let img = 0;
+  imageFigure.src = imageArray[0];
+  button.addEventListener("click", () => {
+    img = imageArray.indexOf(imageFigure.src);
+    if (img + 1 < imageArray.length) imageFigure.src = imageArray[img + 1];
+  });
+  const smallDiv = document.getElementById("smallImages");
+  const div = document.querySelector(".controls");
+
+  smallDiv.style.width = "1000px";
+  let small = Array(links.length);
+
+  for (let i = 0; i < links.length; i++) {
+    small[i] = document.createElement("img");
+    small[i].src = links[i].urls.small;
+    const width = 1000 / links.length;
+    small[i].style.width = width.toString() + "px";
+    smallDiv.append(small[i]);
+    const url = links[i].urls.full;
+    small[i].addEventListener("click", () => {
+      document.getElementById("imageFigure").src = url;
+    });
+  }
 }
 getWeather();
