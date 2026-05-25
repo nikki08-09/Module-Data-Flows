@@ -19,3 +19,8 @@ test("Throw an error for all the invalid inputs", () => {
 test("Ignore big numbers", () => {
   expect(calculator("2,4,1,2,4,5,6,1001")).toEqual(24);
 });
+test("Throw an error for negative numbers", () => {
+  expect(() => {
+    calculator("1,2,4,5,-8,-10");
+  }).toThrow("negatives not allowed: -8,-10");
+});
