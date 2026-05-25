@@ -5,6 +5,15 @@ function calculator(numbers) {
     let number = numbers.split(",")[0];
     let secondNumber = numbers.split(",")[1];
     return Number(number) + Number(secondNumber);
+  } else if (numbers.split(",").length >= 3 && numbersYes(numbers)) {
+    let arr = numbers.split(",");
+    let total = 0;
+    for (let i = 0; i < arr.length; i++) {
+      let number = Number(arr[i]);
+      if (number > 1000) continue;
+      total += number;
+    }
+    return total;
   }
 }
 module.exports = calculator;
