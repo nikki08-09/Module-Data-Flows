@@ -31,23 +31,23 @@
         </p>
       </div>
 
-      <div class="thumbs" id="thumbs"></div>
-
-      <div class="controls">
-        <div
-          id="smallImages"
-          style="display: flex; background-color: blue; height: 100px"
-        ></div>
-        <label class="search__label" for="search-tf">City</label>
+      <div class="thumbs" id="thumbs">
         <input
           class="search__input"
           id="search-tf"
           name="city"
           placeholder="Enter city name"
           autocomplete="city"
-          style="height: 50px"
+          style="height: 50px; width: 46%"
         />
-        <button class="btn search__btn">Go</button>
+        <button style="height: 50px" class="btn search__btn">Go</button>
+      </div>
+
+      <div class="controls">
+        <div
+          id="smallImages"
+          style="display: flex; background-color: blue; height: 100px"
+        ></div>
       </div>
     </main>
 
@@ -82,30 +82,52 @@
           info.weather[0].description + "\n" + city;
         button.innerText = "Next";
         button.style.position = "absolute";
-        button.style.left = "50%";
+        button.style.left = "55%";
         button.style.bottom = "40px";
         button.style.borderRadius = "10px";
         const imageFigure = document.createElement("img");
         imageFigure.id = "imageFigure";
         figure.append(imageFigure);
-        imageFigure.style.height = "100%";
-        imageFigure.style.width = "100%";
+        imageFigure.style.position = "absolute";
         let img = 0;
-        imageFigure.src = imageArray[0];
-        button.addEventListener("click", () => {
-          img = imageArray.indexOf(imageFigure.src);
-          if (img + 1 < imageArray.length)
-            imageFigure.src = imageArray[img + 1];
-        });
         const smallDiv = document.getElementById("smallImages");
         const div = document.querySelector(".controls");
+        imageFigure.src = imageArray[0];
+
         const divHTML = div.innerHTML;
+        let small = [];
+        smallDiv.innerHTML = "";
+        for (let i = 0; i < links.length; i++) {
+          small[i] = document.createElement("img");
+          small[i].src = links[i].urls.small;
+          const width = 1000 / links.length;
+          small[i].style.width = width.toString() + "px";
+          smallDiv.append(small[i]);
+          const url = imageArray[i];
+          small[i].addEventListener("click", () => {
+            small[i].style.border = "2px solid red";
+            for (j = 0; j < imageArray.length; j++)
+              if (j != i) small[j].style.border = "none";
+            document.getElementById("imageFigure").src = url;
+            img = i;
+          });
+        }
+        button.addEventListener("click", () => {
+          img = imageArray.indexOf(imageFigure.src) + 1;
+          if (img === imageArray.length) img = 0;
+          imageFigure.src = imageArray[img];
+          small[img].style.border = "2px solid red";
+          for (i = 0; i < imageArray.length; i++)
+            if (i != img) small[i].style.border = "none";
+        });
+
         const search = document.querySelector(".btn");
         search.style.position = "absolute";
         const input = document.getElementById("search-tf");
         input.style.position = "absolute";
         input.style.left = "60px";
         search.style.width = "40px";
+
         search.addEventListener("click", async () => {
           let city = document.getElementById("search-tf").value;
           let info = await fetch(
@@ -142,9 +164,20 @@
             const url = imageArray[i];
             small[i].addEventListener("click", () => {
               document.getElementById("imageFigure").src = url;
+              small[i].style.border = "2px solid red";
+              for (j = 0; j < imageArray.length; j++)
+                if (j != i) small[j].style.border = "none";
               img = i;
             });
           }
+          button.addEventListener("click", () => {
+            img = imageArray.indexOf(imageFigure.src);
+            if (img === imageArray.length) img = 0;
+            imageFigure.src = imageArray[img];
+            small[img].style.border = "2px solid red";
+            for (i = 0; i < imageArray.length; i++)
+              if (i != img) small[i].style.border = "none";
+          });
         });
       }
 
