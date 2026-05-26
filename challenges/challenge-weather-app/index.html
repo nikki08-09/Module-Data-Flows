@@ -34,17 +34,20 @@
       <div class="thumbs" id="thumbs"></div>
 
       <div class="controls">
-        <form class="search" id="search">
-          <label class="search__label" for="search-tf">City</label>
-          <input
-            class="search__input"
-            id="search-tf"
-            name="city"
-            placeholder="Enter city name"
-            autocomplete="city"
-          />
-          <button class="btn search__btn">Go</button>
-        </form>
+        <div
+          id="smallImages"
+          style="display: flex; background-color: blue; height: 100px"
+        ></div>
+        <label class="search__label" for="search-tf">City</label>
+        <input
+          class="search__input"
+          id="search-tf"
+          name="city"
+          placeholder="Enter city name"
+          autocomplete="city"
+          style="height: 50px"
+        />
+        <button class="btn search__btn">Go</button>
       </div>
     </main>
 
@@ -94,7 +97,57 @@
           if (img + 1 < imageArray.length)
             imageFigure.src = imageArray[img + 1];
         });
+        const smallDiv = document.getElementById("smallImages");
+        const div = document.querySelector(".controls");
+        const divHTML = div.innerHTML;
+        const search = document.querySelector(".btn");
+        search.style.position = "absolute";
+        const input = document.getElementById("search-tf");
+        input.style.position = "absolute";
+        input.style.left = "60px";
+        search.style.width = "40px";
+        search.addEventListener("click", async () => {
+          let city = document.getElementById("search-tf").value;
+          let info = await fetch(
+            `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=944c7d6eb18c20b5227a1d6028578e05`
+          )
+            .then((response) => response.json())
+            .catch((error) => {
+              throw new Error("Error");
+            });
+          let query = info.weather[0].description;
+          let images = await fetch(
+            `https://api.unsplash.com/search/photos?query=${query}&client_id=rFjekzFfQzet2DcZuW1kKXe8n9DHZHkp4zy2xGSbV3o`
+          )
+            .then((response) => response.json())
+            .catch((error) => {
+              throw new Error("Error");
+            });
+          imageArray = [];
+          let links = images.results;
+          for (let i = 0; i < links.length; i++) {
+            imageArray.push(links[i].urls.full);
+          }
+          document.querySelector("#conditions").innerText =
+            info.weather[0].description + "\n" + city;
+          imageFigure.src = imageArray[0];
+          let small = [];
+          smallDiv.innerHTML = "";
+          for (let i = 0; i < links.length; i++) {
+            small[i] = document.createElement("img");
+            small[i].src = links[i].urls.small;
+            const width = 1000 / links.length;
+            small[i].style.width = width.toString() + "px";
+            smallDiv.append(small[i]);
+            const url = imageArray[i];
+            small[i].addEventListener("click", () => {
+              document.getElementById("imageFigure").src = url;
+              img = i;
+            });
+          }
+        });
       }
+
       getWeather();
     </script>
   </body>
