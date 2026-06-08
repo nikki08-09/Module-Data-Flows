@@ -81,7 +81,7 @@ function getGryffindorMembers(arr) {
   }
 }
 
-//getGryffindorMembers(hogwarts);
+getGryffindorMembers(hogwarts);
 function getTeachersWithPets(arr) {
   let teachersWithPets = [];
   for (let i = 0; i < arr.length; i++) {
